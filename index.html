@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlexTrack - Personal Fitness Companion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen font-sans">
+
+    <header class="bg-gray-800 border-b border-gray-700 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-emerald-400 tracking-wide">💪 FlexTrack</h1>
+            <p class="text-sm text-gray-400" id="current-date"></p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <div class="md:col-span-1 space-y-8">
+            <section class="bg-gray-800 p-6 rounded-xl border border-gray-700 shadow-xl">
+                <h2 class="text-xl font-semibold mb-4 text-emerald-400">Log Workout</h2>
+                <form id="workout-form" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-400 mb-1">Exercise Name</label>
+                        <input type="text" id="exercise-name" required placeholder="e.g., Bench Press, Running" 
+                            class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-emerald-500">
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-1">Duration (mins)</label>
+                            <input type="number" id="duration" min="1" placeholder="30" 
+                                class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-emerald-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-1">Calories Burned</label>
+                            <input type="number" id="calories" min="1" placeholder="250" 
+                                class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-emerald-500">
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-600 text-gray-900 font-bold py-2 rounded-lg transition dynamic-duration">
+                        Log Workout
+                    </button>
+                </form>
+            </section>
+
+            <section class="bg-gray-800 p-6 rounded-xl border border-gray-700 shadow-xl">
+                <h2 class="text-xl font-semibold mb-4 text-emerald-400">Daily Goals</h2>
+                <form id="goal-form" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-400 mb-1">Target Calories / Day</label>
+                        <input type="number" id="target-calories" required placeholder="e.g., 500" 
+                            class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-emerald-500">
+                    </div>
+                    <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded-lg transition">
+                        Update Goal
+                    </button>
+                </form>
+                
+                <div class="mt-6 pt-4 border-t border-gray-700">
+                    <div class="flex justify-between text-sm mb-1">
+                        <span>Daily Progress</span>
+                        <span id="goal-text" class="font-semibold">0 / 0 kcal</span>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-3 overflow-hidden">
+                        <div id="goal-bar" class="bg-emerald-400 h-full transition-all duration-500" style="width: 0%"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="md:col-span-2 space-y-8">
+            <section class="bg-gray-800 p-6 rounded-xl border border-gray-700 shadow-xl min-h-[300px]">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-semibold text-emerald-400">Workout History</h2>
+                    <button id="clear-history" class="text-xs text-red-400 hover:underline">Clear All</button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-gray-700 text-gray-400 text-sm">
+                                <th class="pb-3">Exercise</th>
+                                <th class="pb-3">Duration</th>
+                                <th class="pb-3">Calories</th>
+                                <th class="pb-3 text-right">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="workout-list" class="divide-y divide-gray-700 text-sm">
+                            </tbody>
+                    </table>
+                    <div id="empty-state" class="text-center py-12 text-gray-500">
+                        No workouts logged today. Let's get moving!
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-gradient-to-r from-emerald-900 to-gray-800 p-6 rounded-xl border border-emerald-700/50 shadow-xl relative overflow-hidden">
+                <div class="relative z-10">
+                    <h2 class="text-xl font-semibold mb-2 text-emerald-300">💡 Daily Fitness Tip</h2>
+                    <p id="tip-box" class="text-gray-200 italic min-h-[48px] text-lg">
+                        "Consistency is code for success. Start small, stay regular."
+                    </p>
+                    <button id="new-tip-btn" class="mt-4 text-xs bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-3 py-1.5 rounded-full hover:bg-emerald-500/40 transition">
+                        Next Tip
+                    </button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // --- State Management (Using LocalStorage) ---
+        let workouts = JSON.parse(localStorage.getItem('workouts')) || [];
+        let calorieGoal = localStorage.getItem('calorieGoal') || 2000;
+
+        // --- Fitness Tips Array ---
+        const fitnessTips = [
+            "Never skip a warm-up. 5-10 minutes of dynamic stretching prepares muscles and prevents injury.",
+            "Hydration check! Drink at least 500ml of water 2 hours before a strenuous workout.",
+            "Form over weight. Lifting lighter with perfect execution builds more muscle than ego lifting.",
+            "Rest days are when muscles actually grow. Ensure you get 7-8 hours of quality sleep.",
+            "Track your progress. Progress isn't just weight lost; it's also stamina gained and heavier weights lifted.",
+            "If you sit at a desk all day, set a timer to stand up and stretch for 2 minutes every hour.",
+            "Post-workout nutrition matters. Consume a mix of protein and carbohydrates within 2 hours of training."
+        ];
+
+        // --- DOM Elements ---
+        const workoutForm = document.getElementById('workout-form');
+        const goalForm = document.getElementById('goal-form');
+        const workoutList = document.getElementById('workout-list');
+        const emptyState = document.getElementById('empty-state');
+        const goalText = document.getElementById('goal-text');
+        const goalBar = document.getElementById('goal-bar');
+        const targetCaloriesInput = document.getElementById('target-calories');
+        const tipBox = document.getElementById('tip-box');
+        const newTipBtn = document.getElementById('new-tip-btn');
+        const clearHistoryBtn = document.getElementById('clear-history');
+
+        // --- Core Functions ---
+        
+        function initApp() {
+            // Set current date
+            document.getElementById('current-date').innerText = new Date().toLocaleDateString('en-US', { 
+                weekday: 'long', month: 'short', day: 'numeric' 
+            });
+            
+            targetCaloriesInput.value = calorieGoal;
+            renderWorkouts();
+            rotateTip();
+        }
+
+        function renderWorkouts() {
+            workoutList.innerHTML = '';
+            let totalCaloriesBurned = 0;
+
+            if (workouts.length === 0) {
+                emptyState.classList.remove('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+                
+                workouts.forEach((workout, index) => {
+                    totalCaloriesBurned += parseInt(workout.calories || 0);
+                    
+                    const row = document.createElement('tr');
+                    row.className = "hover:bg-gray-700/30 transition-colors";
+                    row.innerHTML = `
+                        <td class="py-3 font-medium text-white">${escapeHTML(workout.name)}</td>
+                        <td class="py-3 text-gray-300">${workout.duration ? workout.duration + 'm' : '--'}</td>
+                        <td class="py-3 text-emerald-400 font-semibold">${workout.calories ? workout.calories + ' kcal' : '--'}</td>
+                        <td class="py-3 text-right">
+                            <button onclick="deleteWorkout(${index})" class="text-red-400 hover:text-red-500 font-bold px-2">✕</button>
+                        </td>
+                    `;
+                    workoutList.appendChild(row);
+                });
+            }
+
+            updateGoalProgress(totalCaloriesBurned);
+        }
+
+        function updateGoalProgress(burned) {
+            goalText.innerText = `${burned} / ${calorieGoal} kcal`;
+            const percentage = Math.min((burned / calorieGoal) * 100, 100);
+            goalBar.style.width = `${percentage}%`;
+            
+            if (percentage >= 100) {
+                goalBar.className = "bg-blue-400 h-full transition-all duration-500";
+            } else {
+                goalBar.className = "bg-emerald-400 h-full transition-all duration-500";
+            }
+        }
+
+        function deleteWorkout(index) {
+            workouts.splice(index, 1);
+            localStorage.setItem('workouts', JSON.stringify(workouts));
+            renderWorkouts();
+        }
+
+        function rotateTip() {
+            const randomIndex = Math.floor(Math.random() * fitnessTips.length);
+            tipBox.innerText = `"${fitnessTips[randomIndex]}"`;
+        }
+
+        // Helper to prevent XSS entry errors
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+            );
+        }
+
+        // --- Event Listeners ---
+
+        workoutForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('exercise-name').value.trim();
+            const duration = document.getElementById('duration').value;
+            const calories = document.getElementById('calories').value;
+
+            workouts.push({ name, duration, calories });
+            localStorage.setItem('workouts', JSON.stringify(workouts));
+            
+            renderWorkouts();
+            workoutForm.reset();
+        });
+
+        goalForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            calorieGoal = parseInt(targetCaloriesInput.value) || 2000;
+            localStorage.setItem('calorieGoal', calorieGoal);
+            renderWorkouts();
+        });
+
+        clearHistoryBtn.addEventListener('click', () => {
+            if(confirm("Are you sure you want to clear today's workouts?")) {
+                workouts = [];
+                localStorage.removeItem('workouts');
+                renderWorkouts();
+            }
+        });
+
+        newTipBtn.addEventListener('click', rotateTip);
+
+        // Run on startup
+        initApp();
+    </script>
+</body>
+</html>
