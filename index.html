@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe & Food Blog</title>
     <style>
-        /* --- Reset & Base Styles --- */
         * {
             margin: 0;
             padding: 0;
@@ -40,8 +39,6 @@
         nav a:hover {
             opacity: 0.8;
         }
-
-        /* --- Hero Section with Aesthetic Background Image --- */
         .hero {
             text-align: center;
             padding: 100px 20px;
@@ -64,29 +61,23 @@
             font-size: 1.2rem;
             text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
         }
-
-        /* --- Container Layout --- */
         .container {
             width: 90%;
             max-width: 1100px;
             margin: auto;
             padding: 20px;
         }
-
         .section-title {
             text-align: center;
             margin: 40px 0 20px 0;
             color: #333;
         }
-
-        /* --- Recipe Grid Layout --- */
         .recipe-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
             margin-bottom: 30px;
         }
-
         .card {
             background: white;
             border-radius: 10px;
@@ -98,35 +89,29 @@
             justify-content: space-between;
             transition: transform 0.3s ease;
         }
-
         .card:hover {
             transform: translateY(-5px);
         }
-
         .card-img {
             width: 100%;
             height: 200px;
             object-fit: cover;
         }
-
         .card h3, .card p, .card button {
             margin: 0 20px;
         }
-
         .card h3 {
             color: #ff6600;
             margin-top: 15px;
             margin-bottom: 8px;
             font-size: 1.3rem;
         }
-
         .card p {
             color: #666;
             font-size: 0.95rem;
             margin-bottom: 20px;
             flex-grow: 1;
         }
-
         .card button {
             background: #ff6600;
             color: white;
@@ -137,12 +122,9 @@
             font-weight: bold;
             transition: background 0.2s;
         }
-
         .card button:hover {
             background: #e65c00;
         }
-
-        /* --- Recipe Details Popup Dynamic Styling --- */
         #recipeDetails {
             display: none;
             background: white;
@@ -152,7 +134,6 @@
             border-left: 5px solid #ff6600;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
-
         #recipeDetails h2 {
             color: #ff6600;
             margin-bottom: 15px;
@@ -162,13 +143,10 @@
             color: #333;
             margin: 15px 0 5px 0;
         }
-
         #recipeDetails p {
             color: #555;
             line-height: 1.6;
         }
-
-        /* --- Secondary Sections --- */
         .tips, .benefits, .contact {
             background: white;
             padding: 25px;
@@ -176,14 +154,12 @@
             margin-top: 30px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
-
         .tips h2, .benefits h2, .contact h2 {
             color: #333;
             margin-bottom: 15px;
             border-bottom: 2px solid #f0f0f0;
             padding-bottom: 8px;
         }
-
         .tips ul, .benefits ul {
             padding-left: 20px;
         }
@@ -192,13 +168,9 @@
             margin-bottom: 8px;
             color: #444;
         }
-        
-        /* Subtle color split for benefits checkmarks */
         .benefits li strong {
             color: #ff6600;
         }
-
-        /* --- Forms Styling --- */
         input, textarea {
             width: 100%;
             padding: 12px;
@@ -207,12 +179,10 @@
             border-radius: 5px;
             font-size: 1rem;
         }
-
         input:focus, textarea:focus {
             outline: none;
             border-color: #ff6600;
         }
-
         button.submit {
             margin-top: 15px;
             background: #ff6600;
@@ -224,17 +194,13 @@
             cursor: pointer;
             transition: background 0.2s;
         }
-
         button.submit:hover {
             background: #e65c00;
         }
-
         #msg {
             margin-top: 15px;
             color: #27ae60;
         }
-
-        /* --- Footer --- */
         footer {
             text-align: center;
             background: #333;
@@ -246,7 +212,6 @@
     </style>
 </head>
 <body>
-
 <header>
     <h1>Recipe & Food Blog</h1>
     <nav>
@@ -256,43 +221,33 @@
         <a href="#contact">Contact</a>
     </nav>
 </header>
-
 <section class="hero" id="home">
     <h2>Welcome to Recipe & Food Blog</h2>
     <p>Discover delicious recipes and cooking tips.</p>
 </section>
-
 <div class="container">
-
     <h2 class="section-title" id="recipes">Popular Recipes</h2>
-
     <div class="recipe-grid">
-
         <div class="card">
             <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=600&q=80" alt="Veg Biryani" class="card-img">
             <h3>Veg Biryani</h3>
             <p>Traditional Indian Rice Dish layered with aromatic spices and garden fresh vegetables.</p>
             <button onclick="showRecipe('biryani')">View Recipe</button>
         </div>
-
         <div class="card">
             <img src="https://eastindianrecipes.net/wp-content/uploads/2022/09/How-to-Make-North-Indian-Thali-Vegetarian-7.jpg" alt="Traditional Indian Meals" class="card-img">
             <h3>Traditional Meals</h3>
             <p>A wholesome Indian Thali featuring steamed rice, flatbreads, dal, curries, and refreshing curd.</p>
             <button onclick="showRecipe('meals')">View Recipe</button>
         </div>
-
         <div class="card">
             <img src="https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=600&q=80" alt="Masala Dosa" class="card-img">
             <h3>Masala Dosa</h3>
             <p>Crispy South Indian Breakfast crepe packed with seasoned savory potato filling.</p>
             <button onclick="showRecipe('dosa')">View Recipe</button>
         </div>
-
     </div>
-
     <div id="recipeDetails"></div>
-
     <div class="tips" id="tips">
         <h2>Cooking Tips</h2>
         <ul>
@@ -308,9 +263,8 @@
             <li>Store leftovers properly to maintain freshness and safety.</li>
         </ul>
     </div>
-
     <div class="benefits">
-        <h2>Benefits of Cooking Tips</h2>
+        <h2>Benefits Of  Following Cooking Tips</h2>
         <ul>
             <li><strong>Saves Time:</strong> Proper planning and techniques reduce unnecessary preparation and cooking time in the kitchen.</li>
             <li><strong>Enhances Flavor:</strong> Following smart kitchen methods helps retain natural nutrients and maximizes the taste of dishes.</li>
@@ -319,7 +273,6 @@
             <li><strong>Boosts Confidence:</strong> Understanding basic culinary parameters ensures reproducible, successful results every single time you cook.</li>
         </ul>
     </div>
-
     <div class="contact" id="contact">
         <h2>Contact Us</h2>
         <form onsubmit="sendMessage(event)">
@@ -330,18 +283,14 @@
         </form>
         <p id="msg"></p>
     </div>
-
 </div>
-
 <footer>
     <p>© 2026 Recipe & Food Blog | B.Tech CSE Project</p>
 </footer>
-
 <script>
 function showRecipe(type){
     let details = document.getElementById("recipeDetails");
     details.style.display = "block";
-
     if(type === "biryani"){
         details.innerHTML = `
             <h2>Veg Biryani</h2>
@@ -351,7 +300,6 @@ function showRecipe(type){
             <p>Parboil basmati rice with whole spices. Separately sauté mixed vegetables in a rich gravy mixture of yogurt and biryani masala. Layer the cooked rice and veggies in an airtight container, add fresh mint and saffron strands, and let it cook on very low heat (Dum) for 15 minutes.</p>
         `;
     }
-
     if(type === "meals"){
         details.innerHTML = `
             <h2>Traditional Indian Meals (Thali)</h2>
@@ -361,7 +309,6 @@ function showRecipe(type){
             <p>Cook long-grain rice in a vessel until fluffy. Prepare a classic yellow dal tadka tempered with ghee, cumin, garlic, and red chilies. Cook a rich mixed vegetable subzi or paneer gravy alongside. Knead soft wheat dough to roll out fresh, puffed-up phulkas or rotis. Arrange everything neatly in small bowls surrounding the rice on a large round thali platter, accompanied by a serving of fresh curd and spicy pickle.</p>
         `;
     }
-
     if(type === "dosa"){
         details.innerHTML = `
             <h2>Masala Dosa</h2>
@@ -371,16 +318,12 @@ function showRecipe(type){
             <p>Prepare potato masala filling by tempering mustard seeds, green chilies, onions, and turmeric in a pan before adding mashed potatoes. Pour dosa batter onto a piping-hot flat tawa, spread thinly in circles, add ghee along the edges till crispy golden brown, place filling in the middle, and fold over.</p>
         `;
     }
-
-    // Auto scroll directly down to the recipe details panel smoothly
     details.scrollIntoView({ behavior: 'smooth' });
 }
-
 function sendMessage(e){
     e.preventDefault();
     document.getElementById("msg").innerHTML = "<b>Thank you! Your message has been successfully submitted.</b>";
-    e.target.reset(); // Automatically clears form fields after successful submit
-}
+    e.target.reset(); 
 </script>
 </body>
 </html>
